@@ -13,11 +13,10 @@ import java.util.Objects;
 @Setter
 @Component
 @Entity
-@Table(name = "users", schema = "public")
+@Table(name = "users")
 @NamedEntityGraph(name = "graph.User", attributeNodes = {
         @NamedAttributeNode("userCards"),
         @NamedAttributeNode("userInfo"),
-        @NamedAttributeNode("bankAccount")
 })
 public class User extends BaseEntity {
 
@@ -28,15 +27,13 @@ public class User extends BaseEntity {
     private String surname;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_account_id")
+    @JoinColumn(name = "bank_account_id", referencedColumnName = "id")
     private BankAccount bankAccount;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Column(name = "user_cards")
     private List<Card> userCards;
 
-    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-   // @JoinColumn(name = "user_info", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private UserInformation userInfo;
 
 }
