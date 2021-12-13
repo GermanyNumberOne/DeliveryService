@@ -1,1 +1,0 @@
-Для запуска программы через консоль используйте комманду: java -jar "Ваш путь к папке проекта"\DeliveryService\out\artifacts\DeliveryService_jar\DeliveryService.jar
